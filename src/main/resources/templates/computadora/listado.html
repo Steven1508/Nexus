@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Computadora</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <div class="contenido">
+        <h2>Lista de Computadora</h2>
+        <a th:href="@{/computadora/nuevo}">Nueva Computadora</a>
+        <br />
+        <br />
+            <div th:if="${computadoras != null and !computadoras.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Detalle</th>
+                            <th>Precio</th>
+                            <th>Existencias</th>
+                            <th>Activa</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${computadoras}">
+                            <td th:text="${item.descripcion}"></td>
+                            <td th:text="${item.detalle}"></td>
+                            <td th:text="${#numbers.formatDecimal(item.precio, 3, 2)}" style="text-align: right"></td>
+                            <td th:text="${item.existencias}" style="text-align: center"></td>
+                            <td><input type="checkbox" name="activa" th:cheked="${item.activo}" disabled="true"></td>
+                            <td><a th:href="@{/computadora/modificar/} + ${item.idComputadora}">Modificar</a></td>
+                            <td><a th:href="@{/computadora/eliminar/} + ${item.idComputadora}">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>  
+            <div th:if="${computadoras == null or computadoras.empty}">
+                La lista de computadoras esta vacia.....
+            </div>
+        </div>
+     <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>
