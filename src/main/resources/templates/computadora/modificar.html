@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Modificar Accesorio</title>
-        <link href="../../static/css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -16,7 +16,7 @@
             <form th:action="@{/computadora/guardar}"
                   method="POST"
                   th:object="${computadora}">
-                <input type="hidden" name="idAccesorio" th:field="*{idAccesorio}"/>
+                <input type="hidden" name="idComputadora" th:field="*{idComputadora}"/>
                 <br/>
                 <br/>
                 <label for="descripcion">Descripción:</label><br/>
